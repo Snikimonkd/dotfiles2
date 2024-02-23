@@ -1,0 +1,83 @@
+return {
+	"nvimdev/dashboard-nvim",
+	dependecies = {
+		"nvim-tree/nvim-web-devicons",
+	},
+	priority = 999,
+	event = "VimEnter",
+	lazy = false,
+	opts = {
+		theme = "doom",
+		config = {
+			week_header = {
+				enable = true,
+			},
+			center = {
+				{
+					icon = "󰑓 ",
+					icon_hl = "@variable",
+					desc = "Update plugins",
+					group = "@property",
+					action = "Lazy update",
+					key = "u",
+				},
+				{
+					icon = " ",
+					icon_hl = "@variable",
+					desc = "Install plugins",
+					group = "@property",
+					action = "Mason",
+					key = "i",
+				},
+				{
+					icon = " ",
+					icon_hl = "@variable",
+					desc = "Find file",
+					group = "@property",
+					action = "Telescope find_files",
+					key = "F",
+				},
+				{
+					icon = "󰺯 ",
+					icon_hl = "@variable",
+					desc = "Search",
+					group = "@property",
+					action = "Telescope live_grep",
+					key = "f",
+				},
+				{
+					icon = "󰙅 ",
+					icon_hl = "@variable",
+					desc = "File tree",
+					group = "@property",
+					action = "NvimTreeOpen",
+					key = "t",
+				},
+				{
+					icon = " ",
+					icon_hl = "@variable",
+					desc = "Database",
+					group = "@property",
+					action = "DBUI",
+					key = "d",
+				},
+				{
+					icon = " ",
+					icon_hl = "@variable",
+					desc = "Terminal",
+					group = "@property",
+					action = "ToggleTerm",
+					key = "h",
+				},
+				{
+					icon = "󱖫 ",
+					icon_hl = "@variable",
+					desc = "Git status",
+					group = "@property",
+					action = "Telescope git_status",
+					key = "gs",
+				},
+			},
+		},
+	},
+}
