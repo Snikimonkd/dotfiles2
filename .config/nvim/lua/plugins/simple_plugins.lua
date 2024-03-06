@@ -25,6 +25,9 @@ return {
 		},
 	},
 	{
+		"tpope/vim-fugitive",
+	},
+	{
 		-- usefull go things
 		"olexsmir/gopher.nvim",
 		opts = {},

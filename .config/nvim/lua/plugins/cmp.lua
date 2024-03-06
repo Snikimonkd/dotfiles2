@@ -61,6 +61,7 @@ return {
 					{ name = "buffer" },
 					{ name = "vim-dadbod-completion" },
 					{ name = "go_pkgs" },
+					{ name = "cmdline" },
 				}),
 				formatting = {
 					format = lspkind.cmp_format({

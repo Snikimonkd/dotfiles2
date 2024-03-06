@@ -33,5 +33,8 @@ return {
 		conform.formatters.goimports = {
 			prepend_args = { "-local", get_current_gomod() },
 		}
+		conform.formatters.golines = {
+			prepend_args = { "--max-len", 120 },
+		}
 	end,
 }

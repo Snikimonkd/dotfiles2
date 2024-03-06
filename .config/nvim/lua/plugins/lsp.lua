@@ -3,10 +3,15 @@ return {
 		"ray-x/lsp_signature.nvim",
 	},
 	{
+		"mizlan/delimited.nvim",
+		opts = {},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependecies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"ray-x/lsp_signature.nvim",
+			"mizlan/delimited.nvim",
 		},
 		config = function()
 			local keymap = vim.keymap
@@ -19,8 +24,8 @@ return {
 				underline = false,
 			})
 			keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-			keymap.set("n", "[d", vim.diagnostic.goto_prev)
-			keymap.set("n", "]d", vim.diagnostic.goto_next)
+			--	keymap.set("n", "[d", vim.diagnostic.goto_prev)
+			--	keymap.set("n", "]d", vim.diagnostic.goto_next)
 			keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
 			local lsp_capabilities = vim.tbl_deep_extend(
@@ -61,6 +66,9 @@ return {
 				vim.keymap.set("n", "<space>of", function()
 					vim.lsp.buf.format({ async = true })
 				end, bufopts)
+
+				vim.keymap.set("n", "[d", require("delimited").goto_prev, bufopts)
+				vim.keymap.set("n", "]d", require("delimited").goto_next, bufopts)
 			end
 
 			local lspconfig = require("lspconfig")

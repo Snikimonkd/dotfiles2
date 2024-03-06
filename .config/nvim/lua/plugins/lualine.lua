@@ -28,6 +28,9 @@ return {
 				},
 				lualine_b = {
 					{
+						"branch",
+					},
+					{
 						"diagnostics",
 						sources = { "nvim_workspace_diagnostic" },
 					},
