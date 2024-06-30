@@ -168,7 +168,11 @@ alias gch="git checkout "
 alias gst="git stash"
 alias nn=nvim .
 alias e=exit
+alias mr=make run
+alias mb=make build
 
 eval $(thefuck --alias)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH=$PATH:$HOME/zig
+export PATH=$PATH:$HOME/zls/zig-out/bin
 alias config='/usr/bin/git --git-dir=/Users/slukash/.dotfiles/ --work-tree=/Users/slukash'

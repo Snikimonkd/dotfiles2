@@ -9,8 +9,13 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	{
-		"windwp/nvim-autopairs",
-		opts = {},
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		opts = {
+			max_count = 5,
+			-- Add "oil" to the disabled_filetypes
+			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil" },
+		},
 	},
 	{
 		-- for git conflicts
@@ -25,12 +30,22 @@ return {
 		},
 	},
 	{
+		-- autopairs
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
+	{
 		"tpope/vim-fugitive",
 	},
 	{
 		-- usefull go things
 		"olexsmir/gopher.nvim",
-		opts = {},
+		opts = {
+			gotests = {
+				template_dir = "/Users/slukash/.config/nvim/lua/plugins/gotests_templates",
+			},
+		},
 	},
 	--	{
 	--		-- http client

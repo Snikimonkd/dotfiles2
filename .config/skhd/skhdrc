@@ -7,4 +7,4 @@ alt - l : yabai -m window --focus east
 alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 alt - m : yabai -m window --toggle zoom-fullscreen
-alt - e : yabai -m space --balance
+alt - i : yabai -m space --balance

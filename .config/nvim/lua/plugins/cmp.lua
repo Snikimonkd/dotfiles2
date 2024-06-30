@@ -11,18 +11,17 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		version = false,
 		dependencies = {
-			-- sources
+			-- sourcescmp
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-path",
 
 			-- snippets
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
-
-			-- autopairs
-			"windwp/nvim-autopairs",
 
 			-- icons
 			"onsails/lspkind.nvim",
@@ -31,13 +30,29 @@ return {
 			-- "Snikimonkd/cmp-go-pkgs",
 
 			"kristijanhusak/vim-dadbod-completion",
+
+			-- autopairs
+			"windwp/nvim-autopairs",
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
+			local mapping = {
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<C-k>"] = cmp.mapping(
+					cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+					{ "i", "c" }
+				),
+				["<C-j>"] = cmp.mapping(
+					cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+					{ "i", "c" }
+				),
+			}
+
 			cmp.setup({
+				preselect = cmp.PreselectMode.Item,
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -54,15 +69,15 @@ return {
 						winhighlight = "Normal:None,FloatBorder:FloatBorder,Search:None",
 					},
 				},
-				sources = cmp.config.sources({
+				sources = {
 					{ name = "nvim_lsp" },
-					{ name = "nvim_lua" },
 					{ name = "luasnip" },
+					{ name = "nvim_lua" },
 					{ name = "buffer" },
 					{ name = "vim-dadbod-completion" },
 					{ name = "go_pkgs" },
-					{ name = "cmdline" },
-				}),
+					{ name = "path" },
+				},
 				formatting = {
 					format = lspkind.cmp_format({
 						with_text = true,
@@ -76,11 +91,21 @@ return {
 						},
 					}),
 				},
-				mapping = cmp.mapping.preset.insert({
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-					["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-				}),
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						cmp.config.compare.recently_used,
+						cmp.config.compare.locality,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
+						cmp.config.compare.length,
+						cmp.config.compare.order,
+					},
+				},
+				mapping = mapping,
+				matching = { disallow_symbol_nonprefix_matching = false },
 			})
 
 			cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())

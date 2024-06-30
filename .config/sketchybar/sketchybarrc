@@ -97,10 +97,10 @@ sketchybar --add item clock right                       \
     update_freq=120                                     \
     --subscribe battery system_woke power_source_change
 
-##### asdf #####
 sketchybar --add item wifi right                         \
     --set wifi    script="$PLUGIN_DIR/wifi.sh"    \
     update_freq=5
+
 
 ##### Finalizing Setup #####
 # The below command is only needed at the end of the initial configuration to

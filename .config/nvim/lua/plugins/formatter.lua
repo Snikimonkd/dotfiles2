@@ -18,15 +18,17 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				go = { "gofmt", "goimports", "golines" },
-				-- go = { "gofmt", "goimports" },
+				-- go = { "gofumpt", "goimports", "golines" },
+				go = { "gofmt", "goimports" },
 				json = { "fixjson" },
 				proto = { "buf" },
 				["_"] = { "trim_whitespace" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
-				async = true,
+			},
+			format_after_save = {
+				lsp_fallback = true,
 			},
 			notify_on_error = false,
 		})

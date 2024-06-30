@@ -16,7 +16,7 @@ k.set("n", "<Tab>", ":bnext<CR>")
 k.set("n", "<Esc>", ":noh <CR>")
 
 -- generate unit test
-k.set("n", "<leader>ut", ":GoTestAdd -parallel<CR>")
+k.set("n", "<leader>ut", ":GoTestAdd<CR>")
 
 -- run nearest test
 k.set("n", "<leader>gt", ":TestNearest -strategy=neovim<CR>")
@@ -36,7 +36,7 @@ k.set("n", "<leader>uu", function()
 		handle:close()
 		result = string.gsub(result, "\r", "")
 		result = string.gsub(result, "\n", "")
-		vim.api.nvim_buf_set_text(0, pos[1] - 1, pos[2] + 1, pos[1] - 1, pos[2] + 1, { result })
+		vim.api.nvim_buf_set_text(0, pos[1] - 1, pos[2], pos[1] - 1, pos[2], { result })
 	else
 		vim.print("something went wrong with uuidgen")
 	end
@@ -70,11 +70,11 @@ k.set("n", "<leader>f", builtin.live_grep, {})
 k.set("n", "<leader>bf", builtin.buffers, {})
 -- git status
 k.set("n", "<leader>gs", builtin.git_status, {})
---
+-- lsp references
 k.set("n", "gr", builtin.lsp_references, {})
---
+-- lsp implementations
 k.set("n", "gi", builtin.lsp_implementations, {})
---
+-- git conflicts
 k.set("n", "<leader>lc", ":Telescope conflicts<CR>", {})
 
 -- go generate current file

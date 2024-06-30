@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-CURRENT_WIFI="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)"
-SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
-CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
+CURRENT_WIFI="$(sudo wdutil info)"
+SSID="$(networksetup -getairportnetwork en0 | sed 's/Current Wi-Fi Network: //')"
+CURR_TX="$(echo "$CURRENT_WIFI" | grep "Tx Rate" | sed 's/.*Tx Rate.*: //')"
 
 if [ "$SSID" = "" ]; then
-  sketchybar --set $NAME label="Disconnected" icon=󰖪
+  sketchybar --set wifi label="Disconnected" icon=睊
 else
-  sketchybar --set $NAME label="$SSID (${CURR_TX}Mbps)" icon=󰖩
+  sketchybar --set wifi label="$SSID" icon=󰖩
 fi

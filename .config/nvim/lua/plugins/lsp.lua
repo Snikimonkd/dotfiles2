@@ -1,8 +1,5 @@
 return {
 	{
-		"ray-x/lsp_signature.nvim",
-	},
-	{
 		"mizlan/delimited.nvim",
 		opts = {},
 	},
@@ -28,23 +25,14 @@ return {
 			--	keymap.set("n", "]d", vim.diagnostic.goto_next)
 			keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
-			local lsp_capabilities = vim.tbl_deep_extend(
-				"force",
-				vim.lsp.protocol.make_client_capabilities(),
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lsp_attach = function(client, bufnr)
-				--				require("lsp_signature").on_attach({
-				--					bind = true,
-				--					handler_opts = {
-				--						border = "rounded",
-				--					},
-				--					hint_enable = false,
-				--				}, bufnr)
-
-				-- Enable completion triggered by <c-x><c-o>
-				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+				--				if client.server_capabilities.inlayHintProvider then
+				--					vim.lsp.inlay_hint.enable(true, {
+				--						bufnr = bufnr,
+				--					})
+				--				end
 
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -79,16 +67,16 @@ return {
 				filetypes = { "go" },
 				settings = {
 					buildFlags = { "-tags=integration,unit,db" },
-					--						gopls = {
-					--							hints = {
-					--								assignVariableTypes = true,
-					--								compositeLiteralFields = true,
-					--								constantValues = true,
-					--								functionTypeParameters = true,
-					--								parameterNames = true,
-					--								rangeVariableTypes = true,
-					--							},
-					--						},
+					gopls = {
+						hints = {
+							assignVariableTypes = false,
+							compositeLiteralFields = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
+						},
+					},
 				},
 			})
 
