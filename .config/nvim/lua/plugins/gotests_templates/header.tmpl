@@ -4,6 +4,7 @@
 package {{.Package}}
 
 import (
+    "github.com/google/go-cmp/cmp"
 {{range .Imports}}{{.Name}} {{.Path}}
 {{end}}
 )

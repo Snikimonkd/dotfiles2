@@ -10,6 +10,13 @@ return {
 		dir = "~/go/src/gh/cmp-go-pkgs",
 	},
 	{
+		"L3MON4D3/LuaSnip",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		version = false,
 		dependencies = {
@@ -39,16 +46,41 @@ return {
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
+			-- uncomment this when snippets are needed
+			--			require("luasnip.loaders.from_vscode").lazy_load()
+
 			local mapping = {
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<C-k>"] = cmp.mapping(
-					cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-					{ "i", "c" }
-				),
-				["<C-j>"] = cmp.mapping(
-					cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-					{ "i", "c" }
-				),
+				["<CR>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						if luasnip.expandable() then
+							luasnip.expand()
+						else
+							cmp.confirm({
+								select = true,
+							})
+						end
+					else
+						fallback()
+					end
+				end),
+				["<C-k>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-j>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 			}
 
 			cmp.setup({
@@ -60,7 +92,6 @@ return {
 				},
 				window = {
 					completion = {
-						scrollbar = false,
 						border = "rounded",
 						winhighlight = "Normal:None,FloatBorder:FloatBorder,Search:None",
 					},
@@ -76,8 +107,8 @@ return {
 					{ name = "buffer" },
 					{ name = "vim-dadbod-completion" },
 					{ name = "go_pkgs" },
-					{ name = "path" },
 				},
+				{ name = "path" },
 				formatting = {
 					format = lspkind.cmp_format({
 						with_text = true,
@@ -90,19 +121,6 @@ return {
 							["vim-dadbod-completion"] = "[db]",
 						},
 					}),
-				},
-				sorting = {
-					comparators = {
-						cmp.config.compare.offset,
-						cmp.config.compare.exact,
-						cmp.config.compare.score,
-						cmp.config.compare.recently_used,
-						cmp.config.compare.locality,
-						cmp.config.compare.kind,
-						cmp.config.compare.sort_text,
-						cmp.config.compare.length,
-						cmp.config.compare.order,
-					},
 				},
 				mapping = mapping,
 				matching = { disallow_symbol_nonprefix_matching = false },

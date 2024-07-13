@@ -70,6 +70,10 @@ k.set("n", "<leader>f", builtin.live_grep, {})
 k.set("n", "<leader>bf", builtin.buffers, {})
 -- git status
 k.set("n", "<leader>gs", builtin.git_status, {})
+
+-- git blame
+k.set("n", "<leader>gb", ":Git blame<CR>")
+
 -- lsp references
 k.set("n", "gr", builtin.lsp_references, {})
 -- lsp implementations

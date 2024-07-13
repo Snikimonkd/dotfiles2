@@ -12,9 +12,8 @@ return {
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		opts = {
-			max_count = 5,
-			-- Add "oil" to the disabled_filetypes
-			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil" },
+			max_count = 4,
+			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "dbui", "dbout" },
 		},
 	},
 	{
@@ -34,9 +33,6 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-	},
-	{
-		"tpope/vim-fugitive",
 	},
 	{
 		-- usefull go things
@@ -89,7 +85,7 @@ return {
 		"wakatime/vim-wakatime",
 	},
 	{
-		"Snikimonkd/yazmp",
-		--		dir = "~/yazmp",
+		-- "Snikimonkd/yazmp",
+		dir = "~/go/src/gh/yazmp",
 	},
 }

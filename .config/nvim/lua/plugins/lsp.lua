@@ -28,11 +28,11 @@ return {
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lsp_attach = function(client, bufnr)
-				--				if client.server_capabilities.inlayHintProvider then
-				--					vim.lsp.inlay_hint.enable(true, {
-				--						bufnr = bufnr,
-				--					})
-				--				end
+				if client.server_capabilities.inlayHintProvider then
+					vim.lsp.inlay_hint.enable(true, {
+						bufnr = bufnr,
+					})
+				end
 
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -61,6 +61,14 @@ return {
 
 			local lspconfig = require("lspconfig")
 
+			-- change border of documentation hover window
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
+
 			lspconfig["gopls"].setup({
 				capabilities = lsp_capabilities,
 				on_attach = lsp_attach,
@@ -68,14 +76,51 @@ return {
 				settings = {
 					buildFlags = { "-tags=integration,unit,db" },
 					gopls = {
+						analyses = {
+							append = true,
+							asmdecl = true,
+							assign = true,
+							atomic = true,
+							unreachable = true,
+							nilness = true,
+							ST1003 = true,
+							undeclaredname = true,
+							fillreturns = true,
+							nonewvars = true,
+							fieldalignment = true,
+							shadow = true,
+							unusedvariable = true,
+							unusedparams = true,
+							useany = true,
+							unusedwrite = true,
+						},
+						codelenses = {
+							generate = true, -- show the `go generate` lens.
+							gc_details = true, -- Show a code lens toggling the display of gc's choices.
+							test = true,
+							tidy = true,
+							vendor = true,
+							regenerate_cgo = true,
+							upgrade_dependency = true,
+						},
 						hints = {
 							assignVariableTypes = false,
-							compositeLiteralFields = true,
+							compositeLiteralFields = false,
+							compositeLiteralTypes = false,
 							constantValues = true,
-							functionTypeParameters = true,
-							parameterNames = true,
-							rangeVariableTypes = true,
+							functionTypeParameters = false,
+							parameterNames = false,
+							rangeVariableTypes = false,
 						},
+						usePlaceholders = true,
+						completeUnimported = true,
+						staticcheck = true,
+						matcher = "Fuzzy",
+						-- check if diagnostic update_in_insert is set
+						symbolMatcher = "FastFuzzy",
+						semanticTokens = true,
+						noSemanticString = true, -- disable semantic string tokens so we can use treesitter highlight injection
+						vulncheck = "Imports",
 					},
 				},
 			})
