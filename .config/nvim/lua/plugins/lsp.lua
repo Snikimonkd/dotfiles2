@@ -1,11 +1,14 @@
 return {
 	{
+		"Chaitanyabsprip/fastaction.nvim",
+	},
+	{
 		"mizlan/delimited.nvim",
-		opts = {},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependecies = {
+			"Chaitanyabsprip/fastaction.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"ray-x/lsp_signature.nvim",
 			"mizlan/delimited.nvim",
@@ -49,7 +52,8 @@ return {
 				end, bufopts)
 				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+				--				vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+				vim.keymap.set("n", "<leader>a", '<cmd>lua require("fastaction").code_action()<CR>', bufopts)
 				--				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 				vim.keymap.set("n", "<space>of", function()
 					vim.lsp.buf.format({ async = true })
@@ -112,7 +116,7 @@ return {
 							parameterNames = false,
 							rangeVariableTypes = false,
 						},
-						usePlaceholders = true,
+						usePlaceholders = false,
 						completeUnimported = true,
 						staticcheck = true,
 						matcher = "Fuzzy",
