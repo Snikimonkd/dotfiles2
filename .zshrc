@@ -159,6 +159,8 @@ export GOROOT="/usr/local/go"
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
 alias gs="git status"
 alias gp="git push"
 alias gc="git commit"
@@ -171,8 +173,10 @@ alias e=exit
 alias mr=make run
 alias mb=make build
 
+alias config='/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME'
+
 eval $(thefuck --alias)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH=$PATH:$HOME/zig
 export PATH=$PATH:$HOME/zls/zig-out/bin
-alias config='/usr/bin/git --git-dir=/Users/slukash/.dotfiles/ --work-tree=/Users/slukash'
+

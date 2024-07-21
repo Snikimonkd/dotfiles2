@@ -81,10 +81,6 @@ return {
 		"vim-test/vim-test",
 	},
 	{
-		-- tracks time
-		"wakatime/vim-wakatime",
-	},
-	{
 		-- "Snikimonkd/yazmp",
 		dir = "~/go/src/gh/yazmp",
 	},
