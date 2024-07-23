@@ -116,10 +116,9 @@ return {
 						completeUnimported = true,
 						staticcheck = true,
 						matcher = "Fuzzy",
-						-- check if diagnostic update_in_insert is set
 						symbolMatcher = "FastFuzzy",
-						semanticTokens = true,
-						noSemanticString = true, -- disable semantic string tokens so we can use treesitter highlight injection
+						semanticTokens = false,
+						--	noSemanticString = true, -- disable semantic string tokens so we can use treesitter highlight injection
 						vulncheck = "Imports",
 					},
 				},

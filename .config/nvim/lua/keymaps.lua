@@ -90,12 +90,7 @@ k.set("n", "<leader>at", ":GoTagAdd json<CR>")
 -- open files redactor
 k.set("n", "-", "<CMD>Oil --float<CR>")
 
-k.set("n", "Ó", "<C-w>h")
-k.set("n", "Ô", "<C-w>j")
-k.set("n", "", "<C-w>k")
-k.set("n", "Ò", "<C-w>l")
-
-k.set("n", "<A-h>", "<C-w>h")
-k.set("n", "<A-j>", "<C-w>j")
-k.set("n", "<A-k>", "<C-w>k")
-k.set("n", "<A-l>", "<C-w>l")
+k.set("n", "<c-h>", "<C-w>h")
+k.set("n", "<c-j>", "<C-w>j")
+k.set("n", "<c-k>", "<C-w>k")
+k.set("n", "<c-l>", "<C-w>l")
