@@ -173,10 +173,9 @@ alias e=exit
 alias mr=make run
 alias mb=make build
 
-alias config='/usr/bin/git --git-dir=$HOME/.config/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 eval $(thefuck --alias)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH=$PATH:$HOME/zig
 export PATH=$PATH:$HOME/zls/zig-out/bin
-
