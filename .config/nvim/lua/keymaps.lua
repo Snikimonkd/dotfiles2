@@ -72,7 +72,7 @@ k.set("n", "<leader>bf", builtin.buffers, {})
 k.set("n", "<leader>gs", builtin.git_status, {})
 
 -- git blame
-k.set("n", "<leader>gb", ":Git blame<CR>")
+k.set("n", "<leader>gb", ":GitBlameToggle<CR>")
 
 -- lsp references
 k.set("n", "gr", builtin.lsp_references, {})

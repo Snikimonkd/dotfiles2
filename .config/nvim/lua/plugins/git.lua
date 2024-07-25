@@ -3,11 +3,12 @@ return {
 		"tpope/vim-fugitive",
 	},
 	{
-		dependencies = {
-
-			"tpope/vim-fugitive",
+		"f-person/git-blame.nvim",
+		opts = {
+			enabled = false,
+			message_template = "<committer> • <date> • <summary>",
+			date_format = "%X %x",
 		},
-		"tommcdo/vim-fugitive-blame-ext",
 	},
 	{
 		-- git signs on the left
