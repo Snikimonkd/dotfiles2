@@ -69,6 +69,12 @@ return {
 				border = "rounded",
 			})
 
+			lspconfig["golangci_lint_ls"].setup({
+				capabilities = lsp_capabilities,
+				on_attach = lsp_attach,
+				filetypes = { "go" },
+			})
+
 			lspconfig["gopls"].setup({
 				capabilities = lsp_capabilities,
 				on_attach = lsp_attach,
