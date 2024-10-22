@@ -1,13 +1,19 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GOROOT="/usr/local/go"
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/usr/local/bin"
+
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH=$PATH:$HOME/zig
+export PATH=$PATH:$HOME/zls/zig-out/bin
 
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH/custom"
@@ -85,41 +91,6 @@ source $ZSH/oh-my-zsh.sh
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 
-ZSH_HIGHLIGHT_STYLES[default]='fg=223'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=167,bold'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=214'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=142'
-ZSH_HIGHLIGHT_STYLES[global-alias]='fg=108'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=142'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=223'
-ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=142'
-ZSH_HIGHLIGHT_STYLES[path]=''
-ZSH_HIGHLIGHT_STYLES[path_pathseparator]=''
-ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=''
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=109'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=109'
-ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=223'
-ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=175'
-ZSH_HIGHLIGHT_STYLES[process-substitution]='fg=223'
-ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=175'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=223'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=223'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=223'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=175'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=214'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=214'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=214'
-ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=108'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=108'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=108'
-ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=108'
-ZSH_HIGHLIGHT_STYLES[assign]='fg=223'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=214'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=250,bold'
-ZSH_HIGHLIGHT_STYLES[named-fd]='fg=223'
-ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=223'
-ZSH_HIGHLIGHT_STYLES[arg0]='fg=142'
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -145,21 +116,8 @@ ZSH_HIGHLIGHT_STYLES[arg0]='fg=142'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-# source .config/zsh_themes/.gruvbox-material-dark.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 echo -ne '\e[1 q'
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export GOROOT="/usr/local/go"
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-export PATH="$PATH:/opt/nvim-linux64/bin"
 
 alias gs="git status"
 alias gp="git push"
@@ -176,6 +134,27 @@ alias mb=make build
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 eval $(thefuck --alias)
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH=$PATH:$HOME/zig
-export PATH=$PATH:$HOME/zls/zig-out/bin
+
+function parse_git_branch() {
+    GIT_BRANCH=$(git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p')
+    if [ "$GIT_BRANCH" != "" ]
+    then
+        echo  "${GIT_BRANCH} "
+    fi;
+}
+
+
+# local grey='239'
+# local red='167'
+# local yellow='214'
+# local blue='109'
+# local magenta='175'
+# local cyan='108'
+# local white='223'
+
+COLOR_DEF=$'%f'
+COLOR_DIR=$'%F{239}'
+COLOR_CARET=$'%F{175}'
+COLOR_GIT=$'%F{108}'
+setopt PROMPT_SUBST
+export PROMPT='${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_CARET}❯${COLOR_DEF} '

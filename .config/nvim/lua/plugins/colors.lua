@@ -13,8 +13,8 @@ return {
 		vim.g.gruvbox_material_diagnostic_text_highlight = 1
 		-- highlight error message
 		vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
-		-- soft background
-		-- vim.g.gruvbox_material_background = "hard"
+		-- medium background
+		vim.g.gruvbox_material_background = "medium"
 		-- For better performance
 		vim.g.gruvbox_material_better_performance = 1
 

@@ -58,14 +58,14 @@ return {
 					{
 						elements = {
 							{
-								id = "scopes",
-								size = 0.5,
-								position = "left",
-							},
-							{
 								id = "repl",
 								size = 0.5,
 								position = "right",
+							},
+							{
+								id = "scopes",
+								size = 0.5,
+								position = "left",
 							},
 						},
 						position = "bottom",

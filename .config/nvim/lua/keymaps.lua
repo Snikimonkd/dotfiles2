@@ -90,7 +90,10 @@ k.set("n", "<leader>at", ":GoTagAdd json<CR>")
 -- open files redactor
 k.set("n", "-", "<CMD>Oil --float<CR>")
 
-k.set("n", "<c-h>", "<C-w>h")
-k.set("n", "<c-j>", "<C-w>j")
-k.set("n", "<c-k>", "<C-w>k")
-k.set("n", "<c-l>", "<C-w>l")
+-- tmux navigator does the same
+-- k.set("n", "<c-h>", "<C-w>h")
+-- k.set("n", "<c-j>", "<C-w>j")
+-- k.set("n", "<c-k>", "<C-w>k")
+-- k.set("n", "<c-l>", "<C-w>l")
+
+k.set("n", "<leader>mp", 'evb"ky:%s/<C-R>k/<C-R>*/g')

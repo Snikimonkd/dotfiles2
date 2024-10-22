@@ -1,0 +1,41 @@
+import = [
+    "~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.custom.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[shell]
+
+program = "/bin/zsh"
+
+[window]
+
+opacity = 0.85
+blur = true
+decorations = "None"
+padding = {x = 10, y = 10}
+
+[font]
+
+normal = { family = "FiraCode Nerd Font Mono", style = "SemiBold" }
+size = 24
+
+[selection]
+
+save_to_clipboard = true
+
+[keyboard]
+bindings = [
+    {key = "H", mods = "Control|Shift", command = {program = "/opt/homebrew/bin/tmux", args = ["prev"]}},
+    {key = "L", mods = "Control|Shift", command = {program = "/opt/homebrew/bin/tmux", args = ["next"]}},
+
+    {key = "Enter", mods = "Control|Shift", chars = "\u001b[13;6u"},
+    {key = "}", mods = "Control|Shift", chars = "\u001b[125;6u"},
+
+    {key = "T", mods = "Control|Shift", chars = "\u001b[84;6u"},
+    {key = "N", mods = "Control|Shift", chars = "\u001b[78;6u"},
+
+    {key = "W", mods = "Control|Shift", chars = "\u001b[87;6u"},
+    {key = "I", mods = "Control|Shift", chars = "\u001b[73;6u"},
+]

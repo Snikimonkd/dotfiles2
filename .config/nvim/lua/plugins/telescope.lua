@@ -7,6 +7,7 @@ return {
 			"Snikimonkd/telescope-git-conflicts.nvim",
 		},
 		config = function()
+			local ignore = { ".git/", "vendor", "bin", "go.sum", ".*pb.*go", ".*swagger.json", ".*mock.*go" }
 			local actions = require("telescope.actions")
 			require("telescope").setup({
 				pickers = {
@@ -15,12 +16,12 @@ return {
 						additional_args = function()
 							return { "--hidden" }
 						end,
-						file_ignore_patterns = { ".git/", "vendor", "bin", "go.sum" },
+						file_ignore_patterns = ignore,
 					},
 					find_files = {
 						hidden = true,
 						no_ignore = true,
-						file_ignore_patterns = { ".git/", "vendor", "bin", "go.sum" },
+						file_ignore_patterns = ignore,
 					},
 					lsp_implementations = {
 						fname_width = 9999,

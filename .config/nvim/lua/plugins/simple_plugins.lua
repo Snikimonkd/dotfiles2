@@ -9,11 +9,13 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	{
-		"m4xshen/hardtime.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		opts = {
-			max_count = 4,
-			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "dbui", "dbout" },
+		"christoomey/vim-tmux-navigator",
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
 	{

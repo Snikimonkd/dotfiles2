@@ -20,6 +20,6 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^GlobalProtect Login$" manage=off
 yabai -m rule --add app="^Figure 1$" manage=off
 
-yabai -m config external_bar all:32:0
+# yabai -m config external_bar all:32:0
 
 ## borders active_color=0xe0fbf1c7 inactive_color=0xe01d2021 width=5.0 style=square hidpi=on &
