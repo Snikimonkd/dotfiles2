@@ -38,4 +38,6 @@ bindings = [
 
     {key = "W", mods = "Control|Shift", chars = "\u001b[87;6u"},
     {key = "I", mods = "Control|Shift", chars = "\u001b[73;6u"},
+
+    {key = "{", mods = "Control|Shift", chars = "\u001b[123;6u"},
 ]
